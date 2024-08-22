@@ -1,85 +1,173 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import "./dashboard.css";
 
-const Dashboard = () => {
-  const anvigate = useNavigate()
-  axios.defaults.withCredentials = true
-  const handleLogout = () => {
-    axios.get('http://localhost:5000/auth/logout')
-    .then(result => {
-      if(result.data.Status) { 
-        localStorage.removeItem("valid")
-        anvigate('/')
-      }
-    })
-  }
+function Dashboard() {
   return (
-    <div className="container-fluid">
-      <div className="row flex-nowrap">
-        <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-          <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-            <Link
-              to="/dashboard"
-              className="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-white text-decoration-none"
-            >
-            </Link>
-            <ul
-              className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-              id="menu"
-            >
-              <li className="w-100">
-                <Link
-                  to="/dashboard"
-                  className="nav-link text-white px-0 align-middle"
-                >
-                  <i className="fs-4 bi-speedometer2 ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Dashboard</span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
-                  to="/dashboard/employee"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-people ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">
-                    Manage Employees
-                  </span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
-                  to="/dashboard/category"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-columns ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Category</span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
-                  to="/dashboard/profile"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-person ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Profile</span>
-                </Link>
-              </li>
-              <li className="w-100" onClick={handleLogout}>
-              <Link
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-power ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Logout</span>
-                </Link>
-              </li>
-            </ul>
+    <div className="dashboard-container">
+      {/* Sidebar Navigation */}
+      <div className="sidebar">
+        <div className="user">
+          <img src="https://via.placeholder.com/50" alt="User Avatar" />
+          <span>SuperAdmin</span>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#"><i className="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="#"><i className="fa fa-users"></i> User Management</a></li>
+            <li><a href="#"><i className="fa fa-cog"></i> General Settings</a></li>
+            <li><a href="#"><i className="fa fa-users"></i> People</a></li>
+            <li><a href="#"><i className="fa fa-product-hunt"></i> Product</a></li>
+            <li><a href="#"><i className="fa fa-shopping-cart"></i> Purchase</a></li>
+            <li><a href="#"><i className="fa fa-chart-line"></i> Sales</a></li>
+            <li><a href="#"><i className="fa fa-warehouse"></i> Stock</a></li>
+            <li><a href="#"><i className="fa fa-file-alt"></i> Reports</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      {/* Main Dashboard Content */}
+      <div className="dashboard-content">
+        <h1>Dashboard</h1>
+        <div className="dashboard-grid">
+          <div className="dashboard-card" style={{ backgroundColor: '#6c757d' }}>
+            <div className="card-header">
+              <h2>6</h2>
+              <p>Total Items</p>
+            </div>
+            <div className="card-icon">
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="10" height="10" fill="white" />
+                <rect x="15" y="5" width="10" height="10" fill="white" />
+                <rect x="5" y="15" width="10" height="10" fill="white" />
+              </svg>
+            </div>
+            <div className="card-footer">
+              <a href="#">More Info <span>&rarr;</span></a>
+            </div>
+          </div>
+          
+          <div className="dashboard-card" style={{ backgroundColor: '#28a745' }}>
+            <div className="card-header">
+              <h2>12596.18</h2>
+              <p>Total Sales</p>
+            </div>
+            <div className="card-icon">
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 15L25 25L20 5L10 5L5 25L15 15Z" fill="white" />
+              </svg>
+            </div>
+            <div className="card-footer">
+              <a href="#">More Info <span>&rarr;</span></a>
+            </div>
+          </div>
+          
+          <div className="dashboard-card" style={{ backgroundColor: '#17a2b8' }}>
+            <div className="card-header">
+              <h2>9</h2>
+              <p>Total Products</p>
+            </div>
+            <div className="card-icon">
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="10" height="10" fill="white" />
+                <rect x="5" y="5" width="10" height="10" fill="white" />
+                <rect x="15" y="5" width="10" height="10" fill="white" />
+                <rect x="5" y="15" width="10" height="10" fill="white" />
+                <rect x="15" y="15" width="10" height="10" fill="white" />
+              </svg>
+            </div>
+            <div className="card-footer">
+              <a href="#">More Info <span>&rarr;</span></a>
+            </div>
+          </div>
+          
+          <div className="dashboard-card" style={{ backgroundColor: '#007bff' }}>
+            <div className="card-header">
+              <h2>2</h2>
+              <p>Total Members</p>
+            </div>
+            <div className="card-icon">
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="15" cy="15" r="8" fill="white" />
+                <circle cx="18" cy="10" r="3" fill="white" />
+                <circle cx="12" cy="10" r="3" fill="white" />
+                <circle cx="18" cy="20" r="3" fill="white" />
+                <circle cx="12" cy="20" r="3" fill="white" />
+              </svg>
+            </div>
+            <div className="card-footer">
+              <a href="#">More Info <span>&rarr;</span></a>
+            </div>
+          </div>
+          
+          <div className="dashboard-card" style={{ backgroundColor: '#4285f4' }}>
+            <div className="card-header">
+              <h2>8</h2>
+              <p>Total Category</p>
+            </div>
+            <div className="card-icon">
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="5" width="10" height="10" fill="white" />
+                <rect x="15" y="5" width="10" height="10" fill="white" />
+                <rect x="5" y="15" width="10" height="10" fill="white" />
+                <rect x="15" y="15" width="10" height="10" fill="white" />
+                <rect x="5" y="25" width="10" height="10" fill="white" />
+                <rect x="15" y="25" width="10" height="10" fill="white" />
+              </svg>
+            </div>
+            <div className="card-footer">
+              <a href="#">More Info <span>&rarr;</span></a>
+            </div>
+          </div>
+          
+          <div className="dashboard-card" style={{ backgroundColor: '#ffc107' }}>
+            <div className="card-header">
+              <h2>2</h2>
+              <p>Total Elements</p>
+            </div>
+            <div className="card-icon">
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="10" height="10" fill="white" />
+                <rect x="15" y="15" width="10" height="10" fill="white" />
+              </svg>
+            </div>
+            <div className="card-footer">
+              <a href="#">More Info <span>&rarr;</span></a>
+            </div>
+          </div>
+          
+          <div className="dashboard-card" style={{ backgroundColor: '#20c997' }}>
+            <div className="card-header">
+              <h2>7</h2>
+              <p>Paid Orders</p>
+            </div>
+            <div className="card-icon">
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 15L15 20L20 15" stroke="white" strokeWidth="2" />
+              </svg>
+            </div>
+            <div className="card-footer">
+              <a href="#">More Info <span>&rarr;</span></a>
+            </div>
+          </div>
+          
+          <div className="dashboard-card" style={{ backgroundColor: '#dc3545' }}>
+            <div className="card-header">
+              <h2>1</h2>
+              <p>UnPaid Orders</p>
+            </div>
+            <div className="card-icon">
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 15L15 10L20 15" stroke="white" strokeWidth="2" />
+              </svg>
+            </div>
+            <div className="card-footer">
+              <a href="#">More Info <span>&rarr;</span></a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Dashboard;
